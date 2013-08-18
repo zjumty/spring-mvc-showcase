@@ -13,7 +13,11 @@
 	<annotation-driven conversion-service="conversionService">
 		<argument-resolvers>
 			<beans:bean class="org.springframework.samples.mvc.data.custom.CustomArgumentResolver"/>
+			<beans:bean class="org.springframework.samples.mvc.fastjson.FastJsonArgumentResolver"/>
 		</argument-resolvers>
+        <message-converters>
+            <beans:bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"/>
+        </message-converters>
 		<async-support default-timeout="3000">
 			<callable-interceptors>
 				<beans:bean class="org.springframework.samples.mvc.async.TimeoutCallableProcessingInterceptor" />

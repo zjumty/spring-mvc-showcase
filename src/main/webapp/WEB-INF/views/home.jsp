@@ -24,6 +24,7 @@
 		<li><a href="#exceptions">Exception Handling</a></li>
 		<li><a href="#redirect">Redirecting</a></li>
         <li><a href="#async">Async Requests</a></li>
+        <li><a href="#fastjson">FastJSON Requests</a></li>
     </ul>
     <div id="simple">
 		<h2>Simple</h2>
@@ -438,6 +439,20 @@
 		</li>
 		</ul>
 	</div>
+    <div id="fastjson">
+        <h2>FastJSON Handling</h2>
+        <p>
+            See the <code>org.springframework.samples.mvc.fastjson</code> package for the @Controller code
+        </p>
+        <ul>
+            <li>
+                <a id="fastjson1" href="<c:url value="/fastjson1" />">JSONObject</a>
+            </li>
+            <li>
+                <a id="fastjson2" href="<c:url value="/fastjson2" />">FooBean</a>
+            </li>
+        </ul>
+    </div>
 </div>
 <script type="text/javascript" src="<c:url value="/resources/jquery/1.6/jquery.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/jqueryform/2.8/jquery.form.js" />"></script>
@@ -627,6 +642,71 @@ $(document).ready(function() {
 		return false;
 	});
 
+    $("#fastjson1").click(function(){
+        var data = {
+            name : "matianyi",
+            id : 12345,
+            birthday : "1983-07-01 01:12:12",
+            addresses : [
+                {
+                    street : "street1",
+                    number : 1
+                },
+                {
+                    street : "street2",
+                    number : 2
+                }
+            ]
+        };
+        var link = $(this);
+        $.ajax({
+            url:this.href,
+            dataType:"json",
+            type:"POST",
+            contentType: "application/json",
+            data : JSON.stringify(data),
+            success : function(obj){
+                console.log(obj);
+                alert(obj.addresses[1].street);
+                alert(obj.birthday);
+            }
+
+        });
+        return false;
+    });
+
+    $("#fastjson2").click(function(){
+        var data = {
+            name : "matianyi",
+            id : 12345,
+            birthday : "1983-07-01 01:12:12",
+            addresses : [
+                {
+                    street : "street1",
+                    number : 1
+                },
+                {
+                    street : "street2",
+                    number : 2
+                }
+            ]
+        };
+        var link = $(this);
+        $.ajax({
+            url:this.href,
+            dataType:"json",
+            type:"POST",
+            contentType: "application/json",
+            data : JSON.stringify(data),
+            success : function(obj){
+                console.log(obj);
+                alert(obj.addresses[1].street);
+                alert(obj.birthday);
+            }
+
+        });
+        return false;
+    });
 });
 </script>
 </body>
