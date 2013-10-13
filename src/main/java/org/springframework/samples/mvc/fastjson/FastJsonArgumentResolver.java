@@ -40,12 +40,12 @@ public class FastJsonArgumentResolver implements HandlerMethodArgumentResolver {
 
         char[] buf = new char[1024];
         int rd;
-        while((rd = reader.read(buf)) != -1){
+        while ((rd = reader.read(buf)) != -1) {
             sb.append(buf, 0, rd);
         }
 
         // 利用fastjson转换为对应的类型
-        if(JSONObjectWrapper.class.isAssignableFrom(parameter.getParameterType())){
+        if (JSONObjectWrapper.class.isAssignableFrom(parameter.getParameterType())) {
             return new JSONObjectWrapper(JSON.parseObject(sb.toString()));
         } else {
             return JSON.parseObject(sb.toString(), parameter.getParameterType());
